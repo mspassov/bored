@@ -19,18 +19,23 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <Header/>
-      
-      <button onClick={getActivity}>What Should I do?</button>
-      {activitiesArray.map((activity, id) => {
-        return (
-          <div key={id}>
-            {activity.activity}
-          </div>
-        );
-      })}
+      <Header />
+      <div className="container button-container">
+        <button className="hero-button" onClick={getActivity}>
+          What Should I do?
+        </button>
+      </div>
+      <div className="container grid-container">
+        <ActivityCard />
+        <ActivityCard />
+        <ActivityCard />
+        <ActivityCard />
+      </div>
 
-      <ActivityCard />
+      {activitiesArray.map((activity, id) => {
+        return <div key={id}>{activity.activity}</div>;
+      })}
+      <br />
     </React.Fragment>
   );
 };
