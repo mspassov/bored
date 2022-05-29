@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import Header from "./Components/Header";
-import ActivityCard from "./Components/ActivityCard";
 import DecisionCard from "./Components/DecisionCard";
+import SavedActivitiesList from "./Components/SavedActivitiesList";
 import { useState } from "react";
 import { GlobalProvider } from "./context/GlobalState";
 import { GlobalContext } from "./context/GlobalState";
@@ -35,17 +35,15 @@ const App = () => {
         {!decisionCard ? (
           <p className="prompt">Try a New Activity!</p>
         ) : (
-          <DecisionCard data={decisionCard} />
+          <DecisionCard
+            data={decisionCard}
+            updateDecisionCard={setDecisionCard}
+          />
         )}
       </div>
 
       <h2>Saved Activities</h2>
-
-      <div className="container grid-container">
-        {savedActivities.map((activity, id) => {
-          return <ActivityCard key={id} data={activity} />;
-        })}
-      </div>
+      <SavedActivitiesList />
 
       <br />
     </GlobalProvider>

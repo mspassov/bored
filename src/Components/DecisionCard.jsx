@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { GlobalContext } from "../context/GlobalState";
 
-const DecisionCard = ({ data, activities, setActivities }) => {
+const DecisionCard = ({ data, updateDecisionCard }) => {
   const calculatePrice = (p) => {
     if (p > 0.66) {
       return "$$$";
@@ -33,10 +33,13 @@ const DecisionCard = ({ data, activities, setActivities }) => {
 
   const acceptFunc = (e) => {
     e.preventDefault();
-
-    console.log(data);
     acceptActivity(data);
-    console.log(savedActivities);
+    updateDecisionCard(null);
+  };
+
+  const declineFunc = (e) => {
+    e.preventDefault();
+    updateDecisionCard(null);
   };
 
   return (
@@ -72,7 +75,7 @@ const DecisionCard = ({ data, activities, setActivities }) => {
         </p>
       </div>
       <div className="button-container">
-        <form action="">
+        <form onSubmit={declineFunc}>
           <button className="decision-btn decline-btn">Decline</button>
         </form>
         <form onSubmit={acceptFunc}>
