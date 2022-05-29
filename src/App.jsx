@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "./Components/Header";
 import ActivityCard from "./Components/ActivityCard";
+import DecisionCard from "./Components/DecisionCard";
 import { useState } from "react";
 
 const App = () => {
@@ -25,6 +26,13 @@ const App = () => {
           What Should I do?
         </button>
       </div>
+
+      <div className="container decision-container">
+        <DecisionCard/>
+      </div>
+
+      <h2>Saved Activities</h2>
+
       <div className="container grid-container">
         <ActivityCard />
         <ActivityCard />

@@ -82,6 +82,54 @@ nav .container{
 	background-color: rgb(132, 158, 180);
 }
 
+h2{
+	text-align: center;
+	margin: 50px auto 30px auto;
+}
+
+/* Decision Card Styling */
+.decision-card {
+	width: 360px;
+	margin: 20px auto;
+}
+
+.decision-btn {
+	margin: 15px 30px;
+	border: none;
+	padding: 10px 20px;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 8px;
+}
+
+.decline-btn{
+	background-color: white;
+	color: red;
+	border: 1px solid red;
+	font-weight: 500;
+}
+
+.decline-btn:hover {
+	background-color: red;
+	color: white;
+}
+
+.accept-btn{
+	background-color: white;
+	color: green;
+	border: 1px solid green;
+	font-weight: 500;
+}
+
+.accept-btn:hover {
+	background-color: green;
+	color: white;
+}
+
+
+
 /* Grid Styling */
 
 .grid-container{
@@ -106,7 +154,7 @@ nav .container{
 .card-container{
 	padding-top: 25px;
 	padding-bottom: 25px;
-	padding-left: 50px;
+	padding-left: 25px;
 	padding-right: 25px;
 	border-radius: 8px;
 	line-height: 2;
@@ -132,3 +180,4 @@ nav .container{
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
+
