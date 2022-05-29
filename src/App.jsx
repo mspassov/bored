@@ -7,12 +7,13 @@ import { useState } from "react";
 
 const App = () => {
   const boredBaseUrl = "https://www.boredapi.com/api/";
-  const [activitiesArray, setActivitiesArray] = useState([]);
+  const [savedActivites, setSavedActivities] = useState([]);
+  const [decisionCard, setDecisionCard] = useState(null);
 
   const getActivity = async () => {
     try {
       const { data } = await axios.get(boredBaseUrl + "activity");
-      setActivitiesArray([...activitiesArray, data]);
+      setDecisionCard(data);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +29,11 @@ const App = () => {
       </div>
 
       <div className="container decision-container">
-        <DecisionCard/>
+        {!decisionCard ? (
+          <p className="prompt">Try a New Activity!</p>
+        ) : (
+          <DecisionCard data={decisionCard} />
+        )}
       </div>
 
       <h2>Saved Activities</h2>
@@ -40,7 +45,7 @@ const App = () => {
         <ActivityCard />
       </div>
 
-      {activitiesArray.map((activity, id) => {
+      {savedActivites.map((activity, id) => {
         return <div key={id}>{activity.activity}</div>;
       })}
       <br />

@@ -7,7 +7,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-const DecisionCard = () => {
+const DecisionCard = ({ data }) => {
   const sampleDifficulty = 0.5;
   const samplePrice = 0.99;
 
@@ -47,7 +47,7 @@ const DecisionCard = () => {
       <div className="card-item">
         <FaMapMarker color="#ed8f4c" />
         <p>
-          <strong>Type of Activity:</strong> Education
+          <strong>Type of Activity:</strong> {data.type}
         </p>
       </div>
 
@@ -82,8 +82,8 @@ const DecisionCard = () => {
         </p>
       </div>
       <div className="button-container">
-          <button className="decision-btn decline-btn">Decline</button>
-          <button className="decision-btn accept-btn">Accept</button>
+        <button className="decision-btn decline-btn">Decline</button>
+        <button className="decision-btn accept-btn">Accept</button>
       </div>
     </div>
   );
