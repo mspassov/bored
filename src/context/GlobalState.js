@@ -3,11 +3,7 @@ import AppReducer from './AppReducer'
 
 //Initial State
 const initialState = {
-    savedActivities: [
-        {"activity":"Write a short story","type":"recreational","participants":1,"price":0,"link":"","key":"6301585","accessibility":0.1},
-        {"activity":"Start a band","type":"music","participants":4,"price":0.3,"link":"","key":"5675880","accessibility":0.8},
-        {"activity":"Volunteer and help out at a senior center","type":"charity","participants":1,"price":0,"link":"","key":"3920096","accessibility":0.1}
-    ]
+    savedActivities: []
 }
 
 //Create the context
@@ -17,9 +13,18 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({children}) =>{
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
+    //Actions
+    function acceptActivity(activity){
+        dispatch({
+            type: 'ACCEPT_ACTIVITY',
+            payload: activity
+        })
+    }
+
     return(
         <GlobalContext.Provider value={{
-            savedActivities: state.savedActivities
+            savedActivities: state.savedActivities,
+            acceptActivity
         }}>
             {children}
         </GlobalContext.Provider>

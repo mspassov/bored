@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaMapMarker,
   FaUsers,
@@ -6,11 +6,9 @@ import {
   FaCoins,
   FaStar,
 } from "react-icons/fa";
+import { GlobalContext } from "../context/GlobalState";
 
 const DecisionCard = ({ data, activities, setActivities }) => {
-  const sampleDifficulty = 0.5;
-  const samplePrice = 0.99;
-
   const calculatePrice = (p) => {
     if (p > 0.66) {
       return "$$$";
@@ -31,7 +29,15 @@ const DecisionCard = ({ data, activities, setActivities }) => {
     }
   };
 
-  const acceptFunc = () => {};
+  const { acceptActivity, savedActivities } = useContext(GlobalContext);
+
+  const acceptFunc = (e) => {
+    e.preventDefault();
+
+    console.log(data);
+    acceptActivity(data);
+    console.log(savedActivities);
+  };
 
   return (
     <div className="card-container decision-card">
@@ -66,10 +72,12 @@ const DecisionCard = ({ data, activities, setActivities }) => {
         </p>
       </div>
       <div className="button-container">
-        <button className="decision-btn decline-btn">Decline</button>
-        <button className="decision-btn accept-btn" onClick={acceptFunc}>
-          Accept
-        </button>
+        <form action="">
+          <button className="decision-btn decline-btn">Decline</button>
+        </form>
+        <form onSubmit={acceptFunc}>
+          <button className="decision-btn accept-btn">Accept</button>
+        </form>
       </div>
     </div>
   );
