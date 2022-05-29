@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import Header from "./Components/Header";
 import ActivityCard from "./Components/ActivityCard";
 import DecisionCard from "./Components/DecisionCard";
 import { useState } from "react";
+import { GlobalProvider } from "./context/GlobalState";
+import { GlobalContext } from "./context/GlobalState";
 
 const App = () => {
   const boredBaseUrl = "https://www.boredapi.com/api/";
-  const [savedActivites, setSavedActivities] = useState([]);
   const [decisionCard, setDecisionCard] = useState(null);
 
   const getActivity = async () => {
@@ -19,8 +20,10 @@ const App = () => {
     }
   };
 
+  const { savedActivities } = useContext(GlobalContext);
+
   return (
-    <React.Fragment>
+    <GlobalProvider>
       <Header />
       <div className="container button-container">
         <button className="hero-button" onClick={getActivity}>
@@ -39,17 +42,13 @@ const App = () => {
       <h2>Saved Activities</h2>
 
       <div className="container grid-container">
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
+        {savedActivities.map((activity, id) => {
+          return <ActivityCard key={id} data={activity} />;
+        })}
       </div>
 
-      {savedActivites.map((activity, id) => {
-        return <div key={id}>{activity.activity}</div>;
-      })}
       <br />
-    </React.Fragment>
+    </GlobalProvider>
   );
 };
 

@@ -7,20 +7,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-const ActivityCard = () => {
-  const sampleDifficulty = 0.5;
-  const samplePrice = 0.99;
-
-  const calcualteDifficulty = (diff) => {
-    if (diff > 0.66) {
-      return "Hard";
-    } else if (diff > 0.33) {
-      return "Medium";
-    } else {
-      return "Easy";
-    }
-  };
-
+const ActivityCard = ({ data }) => {
   const calculatePrice = (p) => {
     if (p > 0.66) {
       return "$$$";
@@ -43,19 +30,11 @@ const ActivityCard = () => {
 
   return (
     <div className="card-container">
-      <h3>Learn a new recipe</h3>
+      <h3>{data.activity}</h3>
       <div className="card-item">
         <FaMapMarker color="#ed8f4c" />
         <p>
-          <strong>Type of Activity:</strong> Education
-        </p>
-      </div>
-
-      <div className="card-item">
-        <FaStar color="#ed8f4c" />
-        <p>
-          <strong>Level of Difficulty: </strong>
-          {calcualteDifficulty(sampleDifficulty)}
+          <strong>Type of Activity:</strong> {data.type}
         </p>
       </div>
 
@@ -63,22 +42,22 @@ const ActivityCard = () => {
         <FaCoins color="#ed8f4c" />
         <p>
           <strong>Price: </strong>
-          {calculatePrice(samplePrice)}
+          {calculatePrice(data.price)}
         </p>
       </div>
 
       <div className="card-item">
         <FaUsers color="#ed8f4c" />
         <p>
-          <strong>Number of Participants: </strong> 5
+          <strong>Number of Participants: </strong> {data.participants}
         </p>
       </div>
 
       <div className="card-item">
         <FaAccessibleIcon color="#ed8f4c" />
         <p>
-          <strong>Level of Accessibility: </strong>{" "}
-          {calculateAccessibility(0.1)}
+          <strong>Level of Accessibility: </strong>
+          {calculateAccessibility(data.accessibility)}
         </p>
       </div>
     </div>

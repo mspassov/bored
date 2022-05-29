@@ -7,7 +7,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-const DecisionCard = ({ data }) => {
+const DecisionCard = ({ data, activities, setActivities }) => {
   const sampleDifficulty = 0.5;
   const samplePrice = 0.99;
 
@@ -30,6 +30,8 @@ const DecisionCard = ({ data }) => {
       return "Low";
     }
   };
+
+  const acceptFunc = () => {};
 
   return (
     <div className="card-container decision-card">
@@ -65,7 +67,9 @@ const DecisionCard = ({ data }) => {
       </div>
       <div className="button-container">
         <button className="decision-btn decline-btn">Decline</button>
-        <button className="decision-btn accept-btn">Accept</button>
+        <button className="decision-btn accept-btn" onClick={acceptFunc}>
+          Accept
+        </button>
       </div>
     </div>
   );
