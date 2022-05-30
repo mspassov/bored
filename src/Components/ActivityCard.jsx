@@ -60,6 +60,41 @@ const ActivityCard = ({ data }) => {
           {calculateAccessibility(data.accessibility)}
         </p>
       </div>
+
+      <div className="progress-buttons">
+        <input
+          type="radio"
+          id="radioNotStarted"
+          name="ProgressTracker"
+          value="not-started"
+          checked
+        />
+        <label className="not-started-btn" for="radioNotStarted">
+          Not Started
+        </label>
+
+        <input
+          type="radio"
+          id="radioInProgress"
+          name="ProgressTracker"
+          value="in-progress"
+          checked
+        />
+        <label className="in-progress-btn" for="radioInProgress">
+          In Progress
+        </label>
+
+        <input
+          type="radio"
+          id="radioCompleted"
+          name="ProgressTracker"
+          value="completed"
+          checked
+        />
+        <label className="completed-btn" for="radioCompleted">
+          Completed
+        </label>
+      </div>
     </div>
   );
 };
