@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
 import {
   FaMapMarker,
   FaUsers,
@@ -8,9 +7,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-const ActivityCard = ({ data }) => {
-  const { skipActivity, addCompletedActivity } = useContext(GlobalContext);
-
+const CompletedCard = ({ data }) => {
   const calculatePrice = (p) => {
     if (p > 0.66) {
       return "$$$";
@@ -31,19 +28,11 @@ const ActivityCard = ({ data }) => {
     }
   };
 
-  const skipFunc = (e) => {
-    e.preventDefault();
-    skipActivity(data.key);
-  };
-
-  const completeFunc = (e) => {
-    e.preventDefault();
-    addCompletedActivity(data);
-  };
-
   return (
     <div className="card-container">
-      <h3>{data.activity}</h3>
+      <h3>
+        <s>{data.activity}</s>
+      </h3>
       <div className="card-item">
         <FaMapMarker color="#ed8f4c" />
         <p>
@@ -73,17 +62,8 @@ const ActivityCard = ({ data }) => {
           {calculateAccessibility(data.accessibility)}
         </p>
       </div>
-
-      <div className="button-container">
-        <form onSubmit={skipFunc}>
-          <button className="act-decision-btn skip-btn">Skip</button>
-        </form>
-        <form onSubmit={completeFunc}>
-          <button className="act-decision-btn completed-btn">Completed</button>
-        </form>
-      </div>
     </div>
   );
 };
 
-export default ActivityCard;
+export default CompletedCard;

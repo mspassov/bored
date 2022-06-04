@@ -3,12 +3,13 @@ import axios from "axios";
 import Header from "./Components/Header";
 import DecisionCard from "./Components/DecisionCard";
 import SavedActivitiesList from "./Components/SavedActivitiesList";
+import CompletedActivitiesList from "./Components/CompletedActivitiesList";
 import { useState } from "react";
 import { GlobalProvider } from "./context/GlobalState";
 import { GlobalContext } from "./context/GlobalState";
 
 const App = () => {
-  const boredBaseUrl = "https://www.boredapi.com/api/";
+  const boredBaseUrl = "http://www.boredapi.com/api/";
   const [decisionCard, setDecisionCard] = useState(null);
 
   const getActivity = async () => {
@@ -42,8 +43,11 @@ const App = () => {
         )}
       </div>
 
-      <h2>Saved Activities</h2>
+      <h2>To-Do Activities</h2>
       <SavedActivitiesList />
+
+      <h2>Completed Activities</h2>
+      <CompletedActivitiesList />
 
       <br />
     </GlobalProvider>

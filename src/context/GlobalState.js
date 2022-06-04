@@ -3,7 +3,8 @@ import AppReducer from './AppReducer'
 
 //Initial State
 const initialState = {
-    savedActivities: []
+    savedActivities: [],
+    completedActivities: []
 }
 
 //Create the context
@@ -21,10 +22,27 @@ export const GlobalProvider = ({children}) =>{
         })
     }
 
+    function skipActivity(key){
+        dispatch({
+            type: 'SKIP_ACTIVITY',
+            payload: key
+        })
+    }
+
+    function addCompletedActivity(activity){
+        dispatch({
+            type: 'ADD_COMPLETED',
+            payload: activity
+        })
+    }
+
     return(
         <GlobalContext.Provider value={{
             savedActivities: state.savedActivities,
-            acceptActivity
+            completedActivities: state.completedActivities,
+            acceptActivity,
+            skipActivity,
+            addCompletedActivity
         }}>
             {children}
         </GlobalContext.Provider>

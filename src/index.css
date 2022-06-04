@@ -185,78 +185,34 @@ h2{
 	margin-bottom: 10px;
 }
 
-.progress-buttons{
-	margin-top: 25px;
-}
-
-.progress-buttons input[type="radio"] {
-	opacity: 0;
-	position: fixed;
-	width: 0;
-}
-
-.progress-buttons label {
-	/* display: inline-block; */
-	background-color: white;
-	padding: 10px 8px;
+/* Activity Card Buttons */
+.act-decision-btn {
+	margin: 15px 20px;
+	border: none;
+	padding: 10px 15px;
+	font-weight: bold;
 	font-size: 14px;
-	border-radius: 4px;
-	margin: 7px;
-}
-
-.not-started-btn{
-	color: red;
-	border: 1px solid red;
-}
-
-.not-started-btn:hover{
-	background-color: red;
-	color: white;
 	cursor: pointer;
-	border: 1px solid red;
+	text-decoration: none;
+	border-radius: 8px;
 }
 
-.in-progress-btn{
-	color: rgb(190, 146, 0);
-	border: 1px solid rgb(190, 146, 0);
-}
-
-.in-progress-btn:hover {
-	background-color: rgb(190, 146, 0);
+.skip-btn {
+	background-color: rgb(248, 137, 117);
 	color: white;
-	cursor: pointer;
-	border: 1px solid rgb(190, 146, 0);
+}
+
+.skip-btn:hover {
+	background-color: rgb(156, 60, 60);
+	color: white;
 }
 
 .completed-btn{
-	color: green;
-	border: 1px solid green;
+	background-color: rgb(103, 236, 103);
+	color: white;
 }
 
-.completed-btn:hover {
-	background-color: green;
+.completed-btn:hover{
+	background-color: rgb(67, 153, 67);
 	color: white;
-	cursor: pointer;
-	border: 1px solid green;
-}
-
-.progress-buttons input[type="radio"]:checked + .not-started-btn {
-	background-color: red;
-	color: white;
-	cursor: pointer;
-	border: 1px solid red;
-}
-
-.progress-buttons input[type="radio"]:checked+ .in-progress-btn {
-	background-color: rgb(190, 146, 0);
-	color: white;
-	cursor: pointer;
-	border: 1px solid rgb(190, 146, 0);
-}
-
-.progress-buttons input[type="radio"]:checked + .completed-btn {
-	background-color: green;
-	color: white;
-	cursor: pointer;
-	border: 1px solid green;
 }
