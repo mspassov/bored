@@ -216,3 +216,13 @@ h2{
 	background-color: rgb(67, 153, 67);
 	color: white;
 }
+
+/* Footer */
+footer{
+	height: 60px;
+	background-color: rgb(83, 96, 104);
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

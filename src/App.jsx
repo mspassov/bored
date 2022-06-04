@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import DecisionCard from "./Components/DecisionCard";
 import SavedActivitiesList from "./Components/SavedActivitiesList";
 import CompletedActivitiesList from "./Components/CompletedActivitiesList";
@@ -50,6 +51,8 @@ const App = () => {
       <CompletedActivitiesList />
 
       <br />
+      <br />
+      <Footer />
     </GlobalProvider>
   );
 };
