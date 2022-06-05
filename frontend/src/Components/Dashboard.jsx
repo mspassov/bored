@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import DecisionCard from "./Components/DecisionCard";
-import SavedActivitiesList from "./Components/SavedActivitiesList";
-import CompletedActivitiesList from "./Components/CompletedActivitiesList";
+import Header from "./Header";
+import Footer from "./Footer";
+import DecisionCard from "./DecisionCard";
+import SavedActivitiesList from "./SavedActivitiesList";
+import CompletedActivitiesList from "./CompletedActivitiesList";
 import { useState } from "react";
-import { GlobalProvider } from "./context/GlobalState";
-import { GlobalContext } from "./context/GlobalState";
+import { GlobalProvider } from "../context/GlobalState";
+import { GlobalContext } from "../context/GlobalState";
 
 const Dashboard = () => {
   const boredBaseUrl = "http://www.boredapi.com/api/";
@@ -26,7 +25,7 @@ const Dashboard = () => {
   const { savedActivities } = useContext(GlobalContext);
 
   return (
-    <GlobalProvider>
+    <>
       <Header />
       <div className="container button-container">
         <button className="hero-button" onClick={getActivity}>
@@ -45,16 +44,16 @@ const Dashboard = () => {
         )}
       </div>
 
-      <h2>To-Do Activities</h2>
+      <h2 className="activity-header">To-Do Activities</h2>
       <SavedActivitiesList />
 
-      <h2>Completed Activities</h2>
+      <h2 className="activity-header">Completed Activities</h2>
       <CompletedActivitiesList />
 
       <br />
       <br />
       <Footer />
-    </GlobalProvider>
+    </>
   );
 };
 

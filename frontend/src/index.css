@@ -86,7 +86,7 @@ nav .container{
 	text-align: center;
 }
 
-h2{
+.activity-header{
 	text-align: center;
 	margin: 50px auto 30px auto;
 }
@@ -135,7 +135,6 @@ h2{
 
 
 /* Grid Styling */
-
 .grid-container{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -225,4 +224,142 @@ footer{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+/* Grid Styling for Landing Page */
+.grid{
+	display: grid;
+	gap: 0;
+	height: 100vh;
+	grid-template-areas: 
+	'header header'
+	'register login';
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 80px 1fr;
+}
+
+.header-section{
+	grid-area: header;
+	background-color: aqua;
+}
+
+.register-section{
+	grid-area: register;
+	background-color: rgb(80, 93, 103);
+	display: grid;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-section {
+	grid-area: login;
+	background-color: rgb(148, 159, 175);
+	display: grid;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width: 850px){
+	.grid{
+		grid-template-areas:
+				'header'
+				'register'
+				'login';
+		grid-template-columns: 1fr;
+		grid-template-rows: 80px 1fr 1fr;
+	}
+}
+
+/* Register Form */
+.register-container{
+	background-color: rgb(59, 68, 75);
+	width: 400px;
+	border-radius: 8px;
+}
+
+.register-title{
+	color: white;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.title-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 15px auto;
+}
+
+.input-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.register-container input{
+	padding: 10px 15px;
+	margin: 10px 0px;
+	width: 300px;
+	background-color: rgb(80, 93, 103);
+	border: none;
+}
+
+::placeholder{
+	color: rgb(225, 222, 222);
+	font-weight: 500;
+}
+
+.register-btn{
+	margin: 15px 20px;
+	border: none;
+	width: 300px;
+	padding: 10px 15px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #2b6d33;
+	color: white;
+}
+
+.register-btn:hover{
+	background-color: #56f06b;
+}
+
+/* Login Form */
+.login-container {
+	background-color: rgb(85, 94, 107);
+	width: 400px;
+	border-radius: 8px;
+}
+
+.form-p{
+	text-align: center;
+	color: white;
+	margin: 15px auto;
+}
+
+.login-container input {
+	padding: 10px 15px;
+	margin: 10px 0px;
+	width: 300px;
+	background-color: rgb(148, 159, 175);
+	border: none;
+}
+
+.login-btn {
+	margin: 15px 20px;
+	border: none;
+	width: 300px;
+	padding: 10px 15px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #724471;
+	color: white;
+}
+
+.login-btn:hover {
+	background-color: #f5b8f2;
 }
