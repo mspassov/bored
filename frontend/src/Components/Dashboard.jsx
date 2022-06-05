@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -10,7 +10,7 @@ import { useState } from "react";
 import { GlobalProvider } from "./context/GlobalState";
 import { GlobalContext } from "./context/GlobalState";
 
-const App = () => {
+const Dashboard = () => {
   const boredBaseUrl = "http://www.boredapi.com/api/";
   const [decisionCard, setDecisionCard] = useState(null);
 
@@ -58,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Dashboard;
