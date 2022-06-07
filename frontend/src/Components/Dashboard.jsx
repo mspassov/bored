@@ -6,8 +6,6 @@ import DecisionCard from "./DecisionCard";
 import SavedActivitiesList from "./SavedActivitiesList";
 import CompletedActivitiesList from "./CompletedActivitiesList";
 import { useState } from "react";
-import { GlobalProvider } from "../context/GlobalState";
-import { GlobalContext } from "../context/GlobalState";
 
 const Dashboard = () => {
   const boredBaseUrl = "http://www.boredapi.com/api/";
@@ -21,8 +19,6 @@ const Dashboard = () => {
       console.log(error);
     }
   };
-
-  const { savedActivities } = useContext(GlobalContext);
 
   return (
     <>

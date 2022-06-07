@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaHotjar, FaUser, FaRegArrowAltCircleRight } from "react-icons/fa";
-import Header from "./Header";
 
 const Landing = () => {
   const [formRegisterData, setFormRegisterData] = useState({
@@ -18,7 +17,23 @@ const Landing = () => {
   const { name, email, password, password2 } = formRegisterData;
   const { loginEmail, loginPassword } = formLoginData;
 
-  const onChange = () => {};
+  const onRegisterChange = (e) => {
+    setFormRegisterData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onLoginChange = (e) => {
+    setFormLoginData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <React.Fragment>
@@ -50,7 +65,7 @@ const Landing = () => {
               <FaUser color="#56f06b" />
               <h3 className="register-title">Get Started</h3>
             </div>
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="input-container">
                 <input
                   type="text"
@@ -58,7 +73,7 @@ const Landing = () => {
                   name="name"
                   value={name}
                   placeholder="Enter your name"
-                  onChange={onChange}
+                  onChange={onRegisterChange}
                 />
                 <input
                   type="text"
@@ -66,7 +81,7 @@ const Landing = () => {
                   name="email"
                   value={email}
                   placeholder="Enter your email"
-                  onChange={onChange}
+                  onChange={onRegisterChange}
                 />
                 <input
                   type="password"
@@ -74,7 +89,7 @@ const Landing = () => {
                   name="password"
                   value={password}
                   placeholder="Enter your password"
-                  onChange={onChange}
+                  onChange={onRegisterChange}
                 />
                 <input
                   type="password"
@@ -82,7 +97,7 @@ const Landing = () => {
                   name="password2"
                   value={password2}
                   placeholder="Confirm your password"
-                  onChange={onChange}
+                  onChange={onRegisterChange}
                 />
                 <button type="submit" className="register-btn">
                   Register
@@ -106,7 +121,7 @@ const Landing = () => {
                   name="loginEmail"
                   value={loginEmail}
                   placeholder="Enter your email"
-                  onChange={onChange}
+                  onChange={onLoginChange}
                 />
                 <input
                   type="password"
@@ -114,7 +129,7 @@ const Landing = () => {
                   name="loginPassword"
                   value={loginPassword}
                   placeholder="Enter your password"
-                  onChange={onChange}
+                  onChange={onLoginChange}
                 />
                 <button type="submit" className="login-btn">
                   Login

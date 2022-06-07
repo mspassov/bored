@@ -89,7 +89,6 @@ app.post('/api/registerUser', async (req, res) =>{
             email,
             password
         })
-        console.log(newUser);
 
         if(newUser){
             res.status(201).json({
@@ -135,8 +134,4 @@ app.get('/api/getUserData', protect, async (req, res) =>{
 })
 
 
-
-
 app.listen(port, () => console.log(`Server Running: ${port}`));
-
-

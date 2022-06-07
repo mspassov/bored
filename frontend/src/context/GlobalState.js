@@ -36,6 +36,8 @@ export const GlobalProvider = ({children}) =>{
         })
     }
 
+    
+
     return(
         <GlobalContext.Provider value={{
             savedActivities: state.savedActivities,
