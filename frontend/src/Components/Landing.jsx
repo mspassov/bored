@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaHotjar, FaUser, FaRegArrowAltCircleRight } from "react-icons/fa";
 import { GlobalContext } from "../context/GlobalState";
+import axios from "axios";
 
 const Landing = () => {
   const [formRegisterData, setFormRegisterData] = useState({
@@ -23,17 +24,17 @@ const Landing = () => {
     useContext(GlobalContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    //console.log("here", message);
-    if (message == "success") {
-      resetMessage();
-      navigate("/dashboard");
-    }
+  //   useEffect(() => {
+  //     //console.log("here", message);
+  //     if (message == "success") {
+  //       resetMessage();
+  //       navigate("/dashboard");
+  //     }
 
-    if (message == "reject") {
-      alert("Invalid Register Data");
-    }
-  }, [user, message, navigate]);
+  //     if (message == "reject") {
+  //       alert("Invalid Register Data");
+  //     }
+  //   }, [user, message, navigate]);
 
   const onRegisterChange = (e) => {
     setFormRegisterData((prevState) => ({
@@ -49,7 +50,7 @@ const Landing = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== password2) {
@@ -59,7 +60,6 @@ const Landing = () => {
         password: "",
         password2: "",
       }));
-      resetMessage();
     }
 
     const userData = {
@@ -68,7 +68,23 @@ const Landing = () => {
       password,
     };
 
-    registerUser(userData);
+    //Make API call to register user
+    const REGISTER_URL = "/api/registerUser";
+    try {
+      const response = await axios.post(REGISTER_URL, userData);
+      if (response.data?.token) {
+        localStorage.setItem("loggedUser", JSON.stringify(response.data));
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      setFormRegisterData({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      });
+      alert("The email must be unique");
+    }
   };
 
   return (
