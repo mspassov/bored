@@ -5,7 +5,6 @@ import {
   FaUsers,
   FaAccessibleIcon,
   FaCoins,
-  FaStar,
 } from "react-icons/fa";
 
 const ActivityCard = ({ data }) => {

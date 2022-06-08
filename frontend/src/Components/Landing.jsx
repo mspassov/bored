@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaHotjar, FaUser, FaRegArrowAltCircleRight } from "react-icons/fa";
+import { GlobalContext } from "../context/GlobalState";
 
 const Landing = () => {
   const [formRegisterData, setFormRegisterData] = useState({
@@ -17,6 +19,22 @@ const Landing = () => {
   const { name, email, password, password2 } = formRegisterData;
   const { loginEmail, loginPassword } = formLoginData;
 
+  const { registerUser, message, user, resetMessage } =
+    useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    //console.log("here", message);
+    if (message == "success") {
+      resetMessage();
+      navigate("/dashboard");
+    }
+
+    if (message == "reject") {
+      alert("Invalid Register Data");
+    }
+  }, [user, message, navigate]);
+
   const onRegisterChange = (e) => {
     setFormRegisterData((prevState) => ({
       ...prevState,
@@ -33,6 +51,24 @@ const Landing = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (password !== password2) {
+      alert("Passwords must match");
+      setFormRegisterData((prevState) => ({
+        ...prevState,
+        password: "",
+        password2: "",
+      }));
+      resetMessage();
+    }
+
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
+    registerUser(userData);
   };
 
   return (
@@ -47,13 +83,13 @@ const Landing = () => {
               </div>
               <ul className="nav-list">
                 <li>
-                  <a href="#">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="#">About</a>
+                  <a href="/">About</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="/">Contact</a>
                 </li>
               </ul>
             </div>
@@ -74,6 +110,7 @@ const Landing = () => {
                   value={name}
                   placeholder="Enter your name"
                   onChange={onRegisterChange}
+                  required
                 />
                 <input
                   type="text"
@@ -82,6 +119,7 @@ const Landing = () => {
                   value={email}
                   placeholder="Enter your email"
                   onChange={onRegisterChange}
+                  required
                 />
                 <input
                   type="password"
@@ -90,6 +128,7 @@ const Landing = () => {
                   value={password}
                   placeholder="Enter your password"
                   onChange={onRegisterChange}
+                  required
                 />
                 <input
                   type="password"
@@ -98,6 +137,7 @@ const Landing = () => {
                   value={password2}
                   placeholder="Confirm your password"
                   onChange={onRegisterChange}
+                  required
                 />
                 <button type="submit" className="register-btn">
                   Register
@@ -122,6 +162,7 @@ const Landing = () => {
                   value={loginEmail}
                   placeholder="Enter your email"
                   onChange={onLoginChange}
+                  required
                 />
                 <input
                   type="password"
@@ -130,6 +171,7 @@ const Landing = () => {
                   value={loginPassword}
                   placeholder="Enter your password"
                   onChange={onLoginChange}
+                  required
                 />
                 <button type="submit" className="login-btn">
                   Login

@@ -4,7 +4,6 @@ import {
   FaUsers,
   FaAccessibleIcon,
   FaCoins,
-  FaStar,
 } from "react-icons/fa";
 import { GlobalContext } from "../context/GlobalState";
 

@@ -1,8 +1,13 @@
 import React, {createContext, useReducer} from 'react';
-import AppReducer from './AppReducer'
+import AppReducer from './AppReducer';
+
+//Get the user from local storage
+const loggedUser = localStorage.getItem('loggedUser');
 
 //Initial State
 const initialState = {
+    user: loggedUser ? loggedUser : null,
+    message: null,
     savedActivities: [],
     completedActivities: []
 }
@@ -36,15 +41,31 @@ export const GlobalProvider = ({children}) =>{
         })
     }
 
-    
+    function registerUser(userData){
+        dispatch({
+            type: 'REGISTER_USER',
+            payload: userData
+        })
+    }
+
+    function resetMessage(){
+        dispatch({
+            type: 'RESET_MESSAGE',
+            payload: ''
+        })
+    }
+
 
     return(
         <GlobalContext.Provider value={{
             savedActivities: state.savedActivities,
             completedActivities: state.completedActivities,
+            message: state.message,
             acceptActivity,
             skipActivity,
-            addCompletedActivity
+            addCompletedActivity,
+            registerUser,
+            resetMessage
         }}>
             {children}
         </GlobalContext.Provider>
