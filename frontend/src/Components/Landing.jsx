@@ -20,21 +20,7 @@ const Landing = () => {
   const { name, email, password, password2 } = formRegisterData;
   const { loginEmail, loginPassword } = formLoginData;
 
-  const { registerUser, message, user, resetMessage } =
-    useContext(GlobalContext);
   const navigate = useNavigate();
-
-  //   useEffect(() => {
-  //     //console.log("here", message);
-  //     if (message == "success") {
-  //       resetMessage();
-  //       navigate("/dashboard");
-  //     }
-
-  //     if (message == "reject") {
-  //       alert("Invalid Register Data");
-  //     }
-  //   }, [user, message, navigate]);
 
   const onRegisterChange = (e) => {
     setFormRegisterData((prevState) => ({

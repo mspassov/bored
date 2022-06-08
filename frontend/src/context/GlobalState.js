@@ -1,13 +1,8 @@
 import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
 
-//Get the user from local storage
-const loggedUser = localStorage.getItem('loggedUser');
-
 //Initial State
 const initialState = {
-    user: loggedUser ? loggedUser : null,
-    message: null,
     savedActivities: [],
     completedActivities: []
 }
