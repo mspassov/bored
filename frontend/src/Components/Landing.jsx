@@ -74,6 +74,33 @@ const Landing = () => {
     }
   };
 
+  //Create Login logic
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const LOGIN_URL = "/api/loginUser";
+
+    const userData = {
+      email: loginEmail,
+      password: loginPassword,
+    };
+
+    try {
+      const response = await axios.post(LOGIN_URL, userData);
+      console.log(response);
+      if (response.data?.token) {
+        localStorage.setItem("loggedUser", JSON.stringify(response.data));
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+      setFormLoginData({
+        loginEmail: "",
+        loginPassword: "",
+      });
+      alert("User does not exist, or email / password is incorrect");
+    }
+  };
+
   //Make sure that user cannot go back to registration form once logged in
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
@@ -163,7 +190,7 @@ const Landing = () => {
               <h3 className="register-title">Welcome Back</h3>
             </div>
             <p className="form-p">Good to have you back!</p>
-            <form>
+            <form onSubmit={onLogin}>
               <div className="input-container">
                 <input
                   type="text"

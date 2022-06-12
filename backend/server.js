@@ -23,7 +23,7 @@ const protect = async (req, res, next) =>{
         try {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id);
+            req.user = await User.findById(decoded.id); //this tells you what the ID is of the user that made the request
 
             next();
         } catch (error) {
@@ -52,7 +52,18 @@ app.get('/api/savedActivities', protect, async (req, res) => {
 })
 
 app.post('/api/savedActivities', protect, async (req, res) => {
-    res.status(200).json({message: "Adding a saved activity"})
+
+    const newActivity = await savedActivities.create({
+        user: req.user.id,
+        activity: req.body.activity,
+        type: req.body.type,
+        participants: req.body.participants,
+        price: req.body.price,
+        key: req.body.key,
+        accessibility: req.body.key
+    })
+
+    res.status(200).json(newActivity);
 })
 
 app.delete('/api/savedActivities/:id', protect, async (req, res) => {

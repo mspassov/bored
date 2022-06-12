@@ -1,5 +1,6 @@
 import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
+import axios from 'axios';
 
 //Initial State
 const initialState = {
@@ -15,7 +16,16 @@ export const GlobalProvider = ({children}) =>{
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     //Actions
-    function acceptActivity(activity){
+    async function acceptActivity(activity, token){
+        const ACCEPT_URL = "/api/savedActivities";
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.post(ACCEPT_URL, activity, config);
+
         dispatch({
             type: 'ACCEPT_ACTIVITY',
             payload: activity

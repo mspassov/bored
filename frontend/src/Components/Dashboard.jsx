@@ -22,6 +22,12 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    if (!localStorage.getItem("loggedUser")) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <>
       <Header />

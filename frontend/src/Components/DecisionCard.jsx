@@ -6,6 +6,7 @@ import {
   FaCoins,
 } from "react-icons/fa";
 import { GlobalContext } from "../context/GlobalState";
+import axios from "axios";
 
 const DecisionCard = ({ data, updateDecisionCard }) => {
   const calculatePrice = (p) => {
@@ -32,7 +33,8 @@ const DecisionCard = ({ data, updateDecisionCard }) => {
 
   const acceptFunc = (e) => {
     e.preventDefault();
-    acceptActivity(data);
+    const userData = JSON.parse(localStorage.getItem("loggedUser"));
+    acceptActivity(data, userData.token);
     updateDecisionCard(null);
   };
 

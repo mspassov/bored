@@ -59,6 +59,24 @@ nav .container{
 	margin-left: 25px;
 }
 
+.logout-btn{
+	border: none;
+	background-color:rgb(47, 50, 54);
+	color: white;
+	border: 1px solid white;
+	padding: 10px 15px;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 8px;
+}
+
+.logout-btn:hover{
+	background-color: rgb(115, 126, 140);
+	color: orange;
+}
+
 /* Hero Button Styling */
 .button-container{
 	display: flex;
