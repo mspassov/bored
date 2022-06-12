@@ -36,6 +36,7 @@ const Landing = () => {
     }));
   };
 
+  //Create Registration Logic
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -72,6 +73,13 @@ const Landing = () => {
       alert("The email must be unique");
     }
   };
+
+  //Make sure that user cannot go back to registration form once logged in
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <React.Fragment>

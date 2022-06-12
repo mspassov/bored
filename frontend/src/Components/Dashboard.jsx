@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
 import DecisionCard from "./DecisionCard";
 import SavedActivitiesList from "./SavedActivitiesList";
 import CompletedActivitiesList from "./CompletedActivitiesList";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const boredBaseUrl = "http://www.boredapi.com/api/";
   const [decisionCard, setDecisionCard] = useState(null);
+
+  const navigate = useNavigate();
 
   const getActivity = async () => {
     try {
