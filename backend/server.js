@@ -2,9 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const connectDB = require('./config/db');
 const path = require('path');
-const savedActivities = require('./model/savedActivityModel')
-const completedActivities = require('./model/completedActivityModel');
-const User = require('./model/userModel');
+const savedActivities = require('./models/savedActivityModel')
+const completedActivities = require('./models/completedActivityModel');
+const User = require('./models/userModel');
 const jwt = require('jsonwebtoken');
 
 const port = process.env.PORT || 5000;
