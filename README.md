@@ -12,6 +12,7 @@ MERN Web App which provides users with recommendations about new activities to t
 ## Technical Details
 - Web app was built using the MERN Stack, and activities are fetched from the Bored API (found online)
 - Authentication is securely created using JWT
+- React was used for the front-end with the Context API to manage state
 - Website is hosted on Heroku, and the database was created using Mongo Atlas
 - All stlying was created from scratch (by me!) using vanilla CSS
 
