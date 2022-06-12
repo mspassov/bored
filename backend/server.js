@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
+const path = require('path');
 const savedActivities = require('./models/savedActivityModel')
 const completedActivities = require('./models/completedActivityModel');
 const User = require('./models/userModel');
@@ -153,6 +154,13 @@ app.get('/api/getUserData', protect, async (req, res) =>{
 
     res.status(200).json({message: `${req.user.email} - this is my data`});
 })
+
+//Serve Front-End, written after the app has been completed
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')))
+}
 
 
 app.listen(port, () => console.log(`Server Running: ${port}`));
