@@ -47,30 +47,30 @@ const Landing = () => {
         password: "",
         password2: "",
       }));
-    }
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      };
 
-    const userData = {
-      name,
-      email,
-      password,
-    };
-
-    //Make API call to register user
-    const REGISTER_URL = "/api/registerUser";
-    try {
-      const response = await axios.post(REGISTER_URL, userData);
-      if (response.data?.token) {
-        localStorage.setItem("loggedUser", JSON.stringify(response.data));
-        navigate("/dashboard");
+      //Make API call to register user
+      const REGISTER_URL = "/api/registerUser";
+      try {
+        const response = await axios.post(REGISTER_URL, userData);
+        if (response.data?.token) {
+          localStorage.setItem("loggedUser", JSON.stringify(response.data));
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        setFormRegisterData({
+          name: "",
+          email: "",
+          password: "",
+          password2: "",
+        });
+        alert("The email must be unique");
       }
-    } catch (error) {
-      setFormRegisterData({
-        name: "",
-        email: "",
-        password: "",
-        password2: "",
-      });
-      alert("The email must be unique");
     }
   };
 
