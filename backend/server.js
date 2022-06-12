@@ -47,7 +47,7 @@ const generateToken = (id) =>{
 
 //API Routes
 app.get('/api/savedActivities', protect, async (req, res) => {
-    const s_activities = await savedActivities.find({user: req.user._id});
+    const s_activities = await savedActivities.find({user: req.user.id});
     res.status(200).json(s_activities);
 })
 
@@ -60,23 +60,33 @@ app.post('/api/savedActivities', protect, async (req, res) => {
         participants: req.body.participants,
         price: req.body.price,
         key: req.body.key,
-        accessibility: req.body.key
+        accessibility: req.body.accessibility
     })
 
     res.status(200).json(newActivity);
 })
 
 app.delete('/api/savedActivities/:id', protect, async (req, res) => {
-    res.status(200).json({message: `Deleting a saved activity: ${req.params.id}`})
+    const response = await savedActivities.deleteOne({key: req.params.id});
+    res.status(200).json(response);
 })
 
 app.get('/api/completedActivities', protect, async (req, res) => {
-    const c_activities = await completedActivities.find(); 
+    const c_activities = await completedActivities.find({user: req.user.id}); 
     res.status(200).json(c_activities);
 })
 
 app.post('/api/completedActivities', protect, async (req, res) => {
-    res.status(200).json({message: "Adding a completed activity"})
+    const newActivity = completedActivities.create({
+        user: req.user.id,
+        activity: req.body.activity,
+        type: req.body.type,
+        participants: req.body.participants,
+        price: req.body.price,
+        key: req.body.key,
+        accessibility: req.body.accessibility
+    })
+    res.status(200).json(newActivity);
 })
 
 //User Routes

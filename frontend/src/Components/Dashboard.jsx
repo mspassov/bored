@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -6,10 +6,14 @@ import DecisionCard from "./DecisionCard";
 import SavedActivitiesList from "./SavedActivitiesList";
 import CompletedActivitiesList from "./CompletedActivitiesList";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalState";
 
 const Dashboard = () => {
   const boredBaseUrl = "http://www.boredapi.com/api/";
   const [decisionCard, setDecisionCard] = useState(null);
+
+  const { getSavedActivities, getCompletedActivities } =
+    useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -25,6 +29,10 @@ const Dashboard = () => {
   useEffect(() => {
     if (!localStorage.getItem("loggedUser")) {
       navigate("/");
+    } else {
+      const userData = JSON.parse(localStorage.getItem("loggedUser"));
+      getSavedActivities(userData.token);
+      getCompletedActivities(userData.token);
     }
   }, []);
 

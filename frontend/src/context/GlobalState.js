@@ -32,31 +32,67 @@ export const GlobalProvider = ({children}) =>{
         })
     }
 
-    function skipActivity(key){
+    async function getSavedActivities(token){
+        const GET_SAVED_URL = '/api/savedActivities';
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        const response = await axios.get(GET_SAVED_URL, config);
+
         dispatch({
-            type: 'SKIP_ACTIVITY',
+            type: 'GET_SAVED',
+            payload: response.data
+        })
+    }
+
+    async function getCompletedActivities(token){
+        const GET_COMPLETED_URL = '/api/completedActivities';
+        const config = {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.get(GET_COMPLETED_URL, config);
+
+        dispatch({
+            type: 'GET_COMPLETED',
+            payload: response.data
+        })
+
+    }
+
+    async function deleteActivity(key, token){
+        const DELETE_URL = `/api/savedActivities/${key}`;
+        const config = {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.delete(DELETE_URL, config);
+
+        dispatch({
+            type: 'DELETE_ACTIVITY',
             payload: key
         })
     }
 
-    function addCompletedActivity(activity){
+    async function addCompletedActivity(activity, token){
+        const COMPLETED_URL = '/api/completedActivities';
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.post(COMPLETED_URL, activity, config);
+
         dispatch({
             type: 'ADD_COMPLETED',
             payload: activity
-        })
-    }
-
-    function registerUser(userData){
-        dispatch({
-            type: 'REGISTER_USER',
-            payload: userData
-        })
-    }
-
-    function resetMessage(){
-        dispatch({
-            type: 'RESET_MESSAGE',
-            payload: ''
         })
     }
 
@@ -65,12 +101,11 @@ export const GlobalProvider = ({children}) =>{
         <GlobalContext.Provider value={{
             savedActivities: state.savedActivities,
             completedActivities: state.completedActivities,
-            message: state.message,
+            getSavedActivities,
+            getCompletedActivities,
             acceptActivity,
-            skipActivity,
+            deleteActivity,
             addCompletedActivity,
-            registerUser,
-            resetMessage
         }}>
             {children}
         </GlobalContext.Provider>

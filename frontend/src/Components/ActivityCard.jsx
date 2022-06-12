@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 
 const ActivityCard = ({ data }) => {
-  const { skipActivity, addCompletedActivity } = useContext(GlobalContext);
+  const { deleteActivity, addCompletedActivity } = useContext(GlobalContext);
 
   const calculatePrice = (p) => {
     if (p > 0.66) {
@@ -32,12 +32,15 @@ const ActivityCard = ({ data }) => {
 
   const skipFunc = (e) => {
     e.preventDefault();
-    skipActivity(data.key);
+    const userData = JSON.parse(localStorage.getItem("loggedUser"));
+    deleteActivity(data.key, userData.token);
   };
 
   const completeFunc = (e) => {
     e.preventDefault();
-    addCompletedActivity(data);
+    const userData = JSON.parse(localStorage.getItem("loggedUser"));
+    addCompletedActivity(data, userData.token);
+    deleteActivity(data.key, userData.token);
   };
 
   return (
